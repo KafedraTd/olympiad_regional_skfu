@@ -106,6 +106,8 @@ function checkingTasking() {
     var cost = 0;
     var filled = 0;
     var fields = 0;
+    var OPIY=0;
+    var OPIN=0;
 
     for (y = 5; y < inputsToFill; y++) {
       inputName = 'data[' + dataArrayAdm[y][0] + ']';
@@ -151,7 +153,13 @@ function checkingTasking() {
           }
         } else {
           if (codeTnved == 1) {
-            score += addingCost;
+            //score += addingCost;
+            OPIY += addingCost;
+          }
+          if(admData=='ОПИ6'){
+            if(OPIY>=Math.abs(OPIN)&&OPIY!=0){
+              score=score+OPIY+OPIN
+            }
           }
         }
         cost += addingCost;
@@ -162,6 +170,14 @@ function checkingTasking() {
           element.parentElement.setAttribute('data-tooltip', `${admData} (${addingCost})`);
 
         } else {
+          if (element.type == 'checkbox') { //если ОПИ стоимостью -1
+            OPIN += addingCost;
+          }
+          if(admData=='ОПИ6'){
+            if(OPIY>=Math.abs(OPIN)&&OPIY!=0){
+              score=score+OPIY+OPIN
+            }
+          }
           element.parentElement.setAttribute('data-tooltip', `должно быть пусто (${addingCost})`);
         }
         //window.getComputedStyle(document.querySelector('#ansinp1-1'), ':before').getPropertyValue('content')
@@ -172,7 +188,7 @@ function checkingTasking() {
       }
     };
     document.getElementById('scorePanel').textContent = `Верно: ${Math.round(score * 10) / 10}/${Math.round(cost * 10) / 10} = ${roundingSecond(score / cost, 2) * 100}%`;
-    document.getElementById('fillPanel').textContent = `Всего: ${filled}/${fields} = ${roundingSecond(filled / fields, 2) * 100}%`;
+    document.getElementById('fillPanel').textContent = `Всего: ${filled}/${fields} = ${roundingSecond(filled / fields* 100, 2) }%`;
   };
   getData();
 
