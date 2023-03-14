@@ -16,6 +16,12 @@ body {
 .wrong{
   background-color: rgba(255, 0, 0, 0.4);
 }
+.wrongParent{
+  background-color: rgba(255, 0, 0, 0.1);
+}
+.missedParent{
+  background-color: rgb(255, 255, 0,0.1);
+}
 
 #scorePanel,
 #fillPanel{
