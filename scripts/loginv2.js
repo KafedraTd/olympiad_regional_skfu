@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             for(i=0;i<logins.length;i++){
                 if(loginUsername==logins[i][0]&&loginPassword==logins[i][1]){
-                    transfering(logins[i][2]);
+                    transfering(logins[i][0]);
                     window.open('menu.html', '_self');
                     return
                 }else {
